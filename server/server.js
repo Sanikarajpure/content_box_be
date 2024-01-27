@@ -32,10 +32,12 @@ if (process.env.NODE_ENV === "production") {
 //BODY PARSER
 app.use(express.json());
 
-//COOKIE-PARSER
-app.use(cookieParser());
-
 //SANITIZE JSON
 app.use(xss());
 
 app.use(mongooseSanitize());
+
+const port = process.env.PORT || 3002;
+server.listen(port, () => {
+  console.log(`Server is running on ${port}`);
+});
