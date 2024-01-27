@@ -51,14 +51,10 @@ const authController = {
         //setting access token
         let token = await authService.genAuthToken(user);
 
-        res
-          .cookie("x-access-token", token, {
-            expires: authService.setExpiry(7),
-          })
-          .status(httpStatus.OK)
-          .send({
-            user,
-          });
+        res.status(httpStatus.OK).send({
+          user,
+          "jwtToken": token,
+        });
       }
     } catch (error) {
       next(error);
